@@ -30,6 +30,7 @@ function Login() {
         accountData,
       );
       alert("Login successful!");
+      // Session ID is stored in a cookie
       setCookies("access_token", res.data.token);
       window.localStorage.setItem("userID", res.data.userID);
       navigate("/");
