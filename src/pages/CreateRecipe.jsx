@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateRecipe() {
@@ -13,6 +14,7 @@ export default function CreateRecipe() {
   });
 
   const navigate = useNavigate();
+  const [cookies, _] = useCookies(["access_token"]);
 
   function handleFormUpdate(event) {
     setRecipe({ ...recipe, [event.target.name]: event.target.value });
@@ -33,7 +35,11 @@ export default function CreateRecipe() {
   async function handleSubmit(event) {
     try {
       event.preventDefault();
-      await axios.post("http://localhost:3001/recipes", recipe);
+      await axios.post("http://localhost:3001/recipes", recipe, {
+        headers: {
+          authorisation: cookies.access_token,
+        },
+      });
       alert("Recipe created!");
       navigate("/");
     } catch (error) {
