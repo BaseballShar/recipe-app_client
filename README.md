@@ -29,5 +29,8 @@ This frontend is hosted locally in port 3000. The port number can be changed via
 3. Run `yarn` to install dependencies
 4. Run `yarn dev` and visit `localhost:3000`
 
+# Related Resources
+The backend of this client can be found at [BaseballShar/recipe-app_server](https://github.com/BaseballShar/recipe-app_server)
+
 # Credits
 This project is inspired by the tutorial [MERN Recipe App With Authentication - PedroTech](https://www.youtube.com/watch?v=P43DW3HUUH8). However, I have made improvements to the code quality and continued developing the application beyond the video.
