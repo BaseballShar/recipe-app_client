@@ -1,9 +1,9 @@
 import useRecipes from "../hooks/useRecipes.js";
-import useSavedRecipes from "../hooks/useSavedRecipes.js";
+import useSavedRecipeIDs from "../hooks/useSavedRecipeIDs.js";
 
 export default function Home() {
   const recipes = useRecipes();
-  const [savedRecipes, updateSavedRecipe] = useSavedRecipes();
+  const [savedRecipeIDs, updateSavedRecipeID] = useSavedRecipeIDs();
 
   return (
     <div>
@@ -13,10 +13,10 @@ export default function Home() {
           <li key={recipe._id}>
             <div>
               <h2>{recipe.name}</h2>
-              {savedRecipes.includes(recipe._id) ? (
+              {savedRecipeIDs.includes(recipe._id) ? (
                 <button disabled={true}>Saved</button>
               ) : (
-                <button onClick={() => updateSavedRecipe(recipe._id)}>
+                <button onClick={() => updateSavedRecipeID(recipe._id)}>
                   Save
                 </button>
               )}
