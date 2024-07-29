@@ -6,25 +6,25 @@ export default function Home() {
   const [savedRecipeIDs, updateSavedRecipeID] = useSavedRecipeIDs();
 
   return (
-    <div>
+    <div className="master-container">
       <h1>Recipes</h1>
       <ul>
         {recipes.map((recipe) => (
           <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
-              {savedRecipeIDs.includes(recipe._id) ? (
-                <button disabled={true}>Saved</button>
-              ) : (
-                <button onClick={() => updateSavedRecipeID(recipe._id)}>
-                  Save
-                </button>
-              )}
+            <h2>{recipe.name}</h2>
+            <div className="text-center">
+              <img src={recipe.imageUrl} alt={recipe.name} />
             </div>
-            <div className="instructions">
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
+            {savedRecipeIDs.includes(recipe._id) ? (
+              <button disabled={true}>Saved</button>
+            ) : (
+              <button onClick={() => updateSavedRecipeID(recipe._id)}>
+                Save
+              </button>
+            )}
+            <p>Instructions: {recipe.instructions}</p>
+            <p>Ingredients: {recipe.ingredients.join(", ")}</p>
+
             <p>Cooking Time: {recipe.cookingTime} mins</p>
           </li>
         ))}
