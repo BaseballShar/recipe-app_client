@@ -3,7 +3,8 @@ import useSavedRecipeIDs from "../hooks/useSavedRecipeIDs.js";
 
 export default function Home() {
   const recipes = useRecipes();
-  const [savedRecipeIDs, updateSavedRecipeID] = useSavedRecipeIDs();
+  const [savedRecipeIDs, addSavedRecipeID, deleteSavedRecipeID] =
+    useSavedRecipeIDs();
 
   return (
     <div className="master-container">
@@ -16,11 +17,11 @@ export default function Home() {
               <img src={recipe.imageUrl} alt={recipe.name} />
             </div>
             {savedRecipeIDs.includes(recipe._id) ? (
-              <button disabled={true}>Saved</button>
-            ) : (
-              <button onClick={() => updateSavedRecipeID(recipe._id)}>
-                Save
+              <button onClick={() => deleteSavedRecipeID(recipe._id)}>
+                Delete
               </button>
+            ) : (
+              <button onClick={() => addSavedRecipeID(recipe._id)}>Save</button>
             )}
             <p>Instructions: {recipe.instructions}</p>
             <p>Ingredients: {recipe.ingredients.join(", ")}</p>

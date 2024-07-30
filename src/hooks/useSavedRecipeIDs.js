@@ -22,7 +22,7 @@ export default function useSavedRecipeIDs() {
     if (cookies.access_token) fetchSavedRecipeIDs();
   }, []);
 
-  async function updateSavedRecipeID(recipeID) {
+  async function addSavedRecipeID(recipeID) {
     try {
       const res = await axios.put(
         "http://localhost:3001/recipes",
@@ -42,5 +42,21 @@ export default function useSavedRecipeIDs() {
     }
   }
 
-  return [savedRecipeIDs, updateSavedRecipeID];
+  async function deleteSavedRecipeID(recipeID) {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3001/recipes/userID/${userID}/recipeID/${recipeID}`,
+        {
+          headers: {
+            authorisation: cookies.access_token,
+          },
+        },
+      );
+      setSavedRecipeIDs(res.data.savedRecipes);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return [savedRecipeIDs, addSavedRecipeID, deleteSavedRecipeID];
 }
