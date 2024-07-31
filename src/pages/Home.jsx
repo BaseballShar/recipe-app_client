@@ -20,7 +20,7 @@ export default function Home() {
             </div>
             {savedRecipeIDs.includes(recipe._id) ? (
               <button onClick={() => deleteSavedRecipeID(recipe._id)}>
-                Delete
+                Unsave
               </button>
             ) : (
               <button onClick={() => addSavedRecipeID(recipe._id)}>Save</button>

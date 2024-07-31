@@ -16,7 +16,6 @@ export default function EditRecipe() {
     imageUrl: prevRecipe.imageUrl,
     cookingTime: prevRecipe.cookingTime,
     userOwner: window.localStorage.getItem("userID"),
-    _id: prevRecipe._id,
   });
 
   function handleFormUpdate(event) {
@@ -40,7 +39,7 @@ export default function EditRecipe() {
       event.preventDefault();
       await axios.put(
         "http://localhost:3001/recipes/edit",
-        { recipe },
+        { recipeID: prevRecipe._id, recipe },
         {
           headers: {
             authorisation: cookies.access_token,

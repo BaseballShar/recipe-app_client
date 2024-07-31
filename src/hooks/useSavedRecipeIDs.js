@@ -25,7 +25,7 @@ export default function useSavedRecipeIDs() {
   async function addSavedRecipeID(recipeID) {
     try {
       const res = await axios.put(
-        "http://localhost:3001/recipes",
+        "http://localhost:3001/recipes/save",
         {
           userID,
           recipeID,
@@ -44,8 +44,12 @@ export default function useSavedRecipeIDs() {
 
   async function deleteSavedRecipeID(recipeID) {
     try {
-      const res = await axios.delete(
-        `http://localhost:3001/recipes/userID/${userID}/recipeID/${recipeID}`,
+      const res = await axios.put(
+        "http://localhost:3001/recipes/unsave",
+        {
+          userID,
+          recipeID,
+        },
         {
           headers: {
             authorisation: cookies.access_token,
