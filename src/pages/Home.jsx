@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import useRecipes from "../hooks/useRecipes.js";
 import useSavedRecipeIDs from "../hooks/useSavedRecipeIDs.js";
 
@@ -5,6 +6,7 @@ export default function Home() {
   const recipes = useRecipes();
   const [savedRecipeIDs, addSavedRecipeID, deleteSavedRecipeID] =
     useSavedRecipeIDs();
+  const navigate = useNavigate();
 
   return (
     <div className="master-container">
@@ -23,6 +25,17 @@ export default function Home() {
             ) : (
               <button onClick={() => addSavedRecipeID(recipe._id)}>Save</button>
             )}
+            <button
+              onClick={() =>
+                navigate("/edit-recipe", {
+                  state: {
+                    prevRecipe: recipe,
+                  },
+                })
+              }
+            >
+              Edit
+            </button>
             <p>Instructions: {recipe.instructions}</p>
             <p>Ingredients: {recipe.ingredients.join(", ")}</p>
 
