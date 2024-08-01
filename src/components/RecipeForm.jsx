@@ -75,7 +75,15 @@ export default function RecipeForm({
           value={recipe.name}
           onChange={handleFormUpdate}
         />
-        <label htmlFor="ingredients">Ingredients</label>
+        <div className="flex-row-start">
+          <label htmlFor="ingredients">Ingredients</label>
+          <button type="button" onClick={handleAddIngredient}>
+            Add
+          </button>
+          <button type="button" onClick={handleDeleteIngredient}>
+            Delete
+          </button>
+        </div>
         {recipe.ingredients.map((_, idx) => (
           <input
             key={idx}
@@ -84,12 +92,6 @@ export default function RecipeForm({
             onChange={(e) => handleUpdateIngredient(e, idx)}
           />
         ))}
-        <button type="button" onClick={handleAddIngredient}>
-          Add ingredient
-        </button>
-        <button type="button" onClick={handleDeleteIngredient}>
-          Delete ingredient
-        </button>
         <label htmlFor="instructions">Instructions</label>
         <textarea
           id="instructions"
