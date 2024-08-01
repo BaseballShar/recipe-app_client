@@ -30,6 +30,12 @@ export default function RecipeForm({
     setRecipe({ ...recipe, ingredients });
   }
 
+  function handleDeleteIngredient() {
+    const ingredients = [...recipe.ingredients];
+    ingredients.pop();
+    setRecipe({ ...recipe, ingredients });
+  }
+
   function handleUpdateIngredient(event, idx) {
     const { value } = event.target;
     const ingredients = [...recipe.ingredients];
@@ -70,9 +76,6 @@ export default function RecipeForm({
           onChange={handleFormUpdate}
         />
         <label htmlFor="ingredients">Ingredients</label>
-        <button type="button" onClick={handleAddIngredient}>
-          Add ingredient
-        </button>
         {recipe.ingredients.map((_, idx) => (
           <input
             key={idx}
@@ -81,6 +84,12 @@ export default function RecipeForm({
             onChange={(e) => handleUpdateIngredient(e, idx)}
           />
         ))}
+        <button type="button" onClick={handleAddIngredient}>
+          Add ingredient
+        </button>
+        <button type="button" onClick={handleDeleteIngredient}>
+          Delete ingredient
+        </button>
         <label htmlFor="instructions">Instructions</label>
         <textarea
           id="instructions"
