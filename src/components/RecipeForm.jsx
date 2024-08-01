@@ -32,8 +32,10 @@ export default function RecipeForm({
 
   function handleDeleteIngredient() {
     const ingredients = [...recipe.ingredients];
-    ingredients.pop();
-    setRecipe({ ...recipe, ingredients });
+    if (ingredients.length >= 2) {
+      ingredients.pop();
+      setRecipe({ ...recipe, ingredients });
+    }
   }
 
   function handleUpdateIngredient(event, idx) {

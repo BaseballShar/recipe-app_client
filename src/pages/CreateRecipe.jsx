@@ -3,7 +3,7 @@ import RecipeForm from "../components/RecipeForm";
 export default function CreateRecipe() {
   const emptyRecipe = {
     name: "",
-    ingredients: [],
+    ingredients: [""],
     instructions: "",
     imageUrl: "",
     cookingTime: 0,
